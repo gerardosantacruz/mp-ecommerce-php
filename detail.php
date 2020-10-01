@@ -7,10 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
 
+    <?php    
+
+    MercadoPago\SDK::setAccessToken("ENV_ACCESS_TOKEN");
+
+    $payment = new MercadoPago\Payment();
+
+    $payment->transaction_amount = 141;
+    $payment->token = "YOUR_CARD_TOKEN";
+    $payment->description = "Ergonomic Silk Shirt";
+    $payment->installments = 1;
+    $payment->payment_method_id = "visa";
+    $payment->payer = array(
+      "email" => "larue.nienow@hotmail.com"
+    );
+
+    $payment->save();
+
+    echo $payment->status;
+
+    ?>
+
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
+    
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
 
     <link rel="stylesheet" href="./assets/category-landing.css" media="screen, print">
 
